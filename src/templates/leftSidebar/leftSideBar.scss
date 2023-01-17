@@ -14,14 +14,33 @@
 .leftSidaBar{
 margin-top: 1px;
     width: 20%;
-    background: $purple;
+    background: $white;
 height: 100vh;
 
-.leftSideBar__content{
-    padding-left: 1.4rem;
+// .leftSideBar__content{
+//     padding-left: 1.4rem;
+// }
+.collection{
+margin-top: 0;
 }
 
 }
 
 
 
+// .collection a.collection-item{
+//     color: $black;
+// }
+.collection-item{
+    background: #41AC9C !important;
+    color: white;
+}
+.collection-item{
+    color: white;
+}
+.collection a.collection-item{
+    color: white;
+}
+.material-icons{
+    color: white;
+}

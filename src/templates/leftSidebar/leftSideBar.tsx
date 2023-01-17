@@ -48,7 +48,11 @@ isOpen === num ? setIsOpen(0) : setIsOpen(num)
               {/* {loading && <Loader/>} */}
            <div className="leftSideBar__content">
 
-            
+           <div className="collection">
+    <a href="#!" className="collection-item"><span className="badge">  <i className="material-icons">analytics</i></span>Результаты анализов</a>
+    <a href="#!" className="collection-item"><span className="badge"><i className="material-icons">assessment</i></span>Динамика показателей</a>
+    <a href="#!" className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span>Выход</a>
+  </div>
 
            </div>
         </div>

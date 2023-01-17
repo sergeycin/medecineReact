@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+
+}
+.wrapper{
+display: flex;
+height: 100%;
+}
+  .wrapper__right{
+    width: 80%;
+  }
+
+@media(max-width: 1600px){
+  html,body{
+    font-size: 15px;
+  }
+}

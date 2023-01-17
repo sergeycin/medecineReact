@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter,Navigate,Route,Routes } from 'react-router-dom'
 import Login from './templates/login/login'
+import Main from './templates/main/main'
 
 
 export const MyRoutes : React.FC<{Authenticated: string}> = ({Authenticated}) => {
@@ -12,12 +13,12 @@ export const MyRoutes : React.FC<{Authenticated: string}> = ({Authenticated}) =>
      {/* <Navigate to="/admin/main" /> */}
     <Routes > 
     <Route
-        path="/patient"
+        path="/"
         element={<Navigate to="/patient/main" replace />}
     />
 
-       {/* <Route path="/admin/main" element={<Main/>}/>  
-       <Route path="/admin/create" element={<CreateUser/>}/>  
+       <Route path="/patient/main" element={<Main/>}/>  
+       {/* <Route path="/admin/create" element={<CreateUser/>}/>  
        <Route path="/admin/createNewModel" element={<CreateModel/>}/>  
        <Route path="/admin/:id" element={<List/>}/>  
        <Route path="/admin/watch" element={<WatchModel/>}/>   */}

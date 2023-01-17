@@ -32,8 +32,15 @@ margin-top: 0;
 //     color: $black;
 // }
 .collection-item{
-    background: #41AC9C !important;
+    background: $purple !important;
     color: white;
+}
+.collection-item.active{
+    background: $green !important;
+    color: white;
+}
+.collection-item:hover{
+    background: $green !important;
 }
 .collection-item{
     color: white;

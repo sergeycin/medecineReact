@@ -1,0 +1,20 @@
+@import '../../index.scss';
+
+.nav-wrapper.nav-bread{
+    background: $purple;
+}
+
+@media only screen and (min-width: 601px){
+    nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i{
+        height: 43px;
+        line-height: 47px;
+    }
+}
+
+.breadcrumb{
+    padding-left: 1rem;
+}
+.header.header-list{
+    font-size: 24px;
+    height: auto;
+}

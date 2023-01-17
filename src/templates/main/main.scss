@@ -1,0 +1,20 @@
+@import '../../index.scss';
+
+
+.analize{
+    padding: 2rem;
+    padding-top: 0;
+}
+
+.card-content.analize__content{
+    display: flex;
+    justify-content: space-between;
+}
+.analize .card-action a{
+
+        color: $purple !important;
+}
+.analize .card-action a:hover{
+
+    color: $green !important;
+}

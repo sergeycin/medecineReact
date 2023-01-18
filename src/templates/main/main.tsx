@@ -10,7 +10,7 @@ function Main() {
 
   useEffect (()=>{ 
 
-    fetch('http://195.80.238.246:4028/api/login2.json', {
+    fetch('http://dev.rulis.club:4028/api/login2.json', {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
@@ -56,7 +56,8 @@ function Main() {
           <p>Статус: <span className="label label-success">Завершен</span></p>
         </div>
         <div className="card-action">
-          <NavLink to={`/patient/order22333`}>Посмотреть</NavLink>
+        <NavLink to={`/patient/order22333`} className="waves-effect waves-light btn">Посмотреть</NavLink>
+
         </div>
       </div>
     </div>

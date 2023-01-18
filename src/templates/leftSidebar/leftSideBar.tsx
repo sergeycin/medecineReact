@@ -49,9 +49,9 @@ isOpen === num ? setIsOpen(0) : setIsOpen(num)
            <div className="leftSideBar__content">
 
            <div className="collection">
-    <a href="#!" className="collection-item active"><span className="badge">  <i className="material-icons">analytics</i></span>Результаты анализов</a>
-    <a href="#!" className="collection-item"><span className="badge"><i className="material-icons">assessment</i></span>Динамика показателей</a>
-    <a href="#!" className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span>Выход</a>
+    <NavLink to="/patient/main"   className="collection-item " ><span className="badge">  <i className="material-icons">analytics</i></span>Результаты анализов</NavLink>
+    <NavLink to="/patient/dinamic" className="collection-item "><span className="badge"><i className="material-icons">assessment</i></span>Динамика показателей</NavLink>
+    <NavLink to="/patient/exit" className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span>Выход</NavLink>
   </div>
 
            </div>

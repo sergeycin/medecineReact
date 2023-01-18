@@ -1,8 +1,11 @@
 
 import './breadcrumb.scss'
+ 
+interface listArray{
+  array?: any[]
+}
 
-
-export  function BreadCrumb() {
+export  function BreadCrumb({array}:listArray) {
 
 
   return (
@@ -11,8 +14,9 @@ export  function BreadCrumb() {
   <nav>
     <div className="nav-wrapper  nav-bread">
       <div className="col s12">
-        <a href="#!" className="breadcrumb">Главная</a>
-        <a href="#!" className="breadcrumb">Список анализов</a>
+       {array?.map((item) => <a href="#!" className="breadcrumb">{item}</a>)}
+       
+        {/* <a href="#!" className="breadcrumb">Список анализов</a> */}
       
       </div>
     </div>

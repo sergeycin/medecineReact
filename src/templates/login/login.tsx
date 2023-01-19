@@ -16,7 +16,7 @@ function Login() {
   const {loading,error,request, clearError} = useHttp() 
 
     const [form,setForm] = useState({
-        login: '', password:''
+        folderno: '', password:''
     })
 
     useEffect(()=>{
@@ -32,24 +32,25 @@ function Login() {
   const loginHandler = async (event:any) =>{
     event.preventDefault()
 
-    if(form.login == '0000333189' && form.password == '25672'){
-        navigate("/patient/main")
-        message('Вы успешно авторизировались')
-    }
-    else{
-        message('Неверный логин или пароль')
-    }
+    // if(form.login == '0000333189' && form.password == '25672'){
+    //     navigate("/patient/main")
+    //     message('Вы успешно авторизировались')
+    // }
+    // else{
+    //     message('Неверный логин или пароль')
+    // }
 
-    // try{
-
-    //   const data = await request('/api/auth/login','POST',{...form})
-    //   console.log(data)
-    //   auth.login(data.token,data.userId)
-    //   message(data.message)
+    try{
+      let formData = new FormData();
+      formData.append("api-key", "ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48");
+      const data = await request('http://dev.rulis.club:4028/api/login2.json','POST',formData)
+      console.log(data)
+      // auth.login(data.token,data.userId)
+      // message(data.message)
   
-    //   navigate("/admin/main")
+      // navigate("/admin/main")
       
-    // }catch (e){console.log(e)}
+    }catch (e){console.log(e)}
   }
 
 
@@ -79,7 +80,7 @@ function Login() {
           <form className="form">
       <div className="row">
       <div className="input-field col s12">
-          <input id="email" type="text" className="validate " name='login'  value={form.login}
+          <input id="email" type="text" className="validate " name='folderno'  value={form.folderno}
            onChange={changeHandler}/>
           <label htmlFor="email">Логин</label>
         

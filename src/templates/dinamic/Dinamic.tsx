@@ -5,6 +5,8 @@ import analize from '../../assets/img/analize.svg'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Select from 'react-select';
+import { UserData } from '../charts/chart';
+import BarChart from '../charts/BarChart';
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -17,6 +19,14 @@ function Dinamic(){
 
     const [selectedOption, setSelectedOption] = useState(null);
 
+    const [userData,setUserData] = useState({
+      labels: UserData.map((item) => item.year ) ,
+      datasets:[{
+        label: 'Users Game',
+        data: UserData.map((item) => item.id ) 
+  
+      }]
+    })
 
     return(
      <div className="wrapper__right">
@@ -43,7 +53,11 @@ function Dinamic(){
         <a className="waves-effect waves-light btn">button</a>
         </div>
       </div>
+
+
     </div>
+
+    <BarChart chartData={userData} />
 </div>
   </div>
 

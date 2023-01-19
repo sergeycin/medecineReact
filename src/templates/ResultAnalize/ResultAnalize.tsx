@@ -4,12 +4,16 @@ import analize from '../../assets/img/analize.svg'
 import { BreadCrumb } from '../breadcrumb/breadcrumb';
 import { useState } from 'react';
 
+
+
 export  function ResultAnalize() {
   const [isOpen,setIsOpen] = useState<number>(0)
 
   const openList = (event: React.MouseEvent, num:number) =>{
  isOpen === num ? setIsOpen(0) : setIsOpen(num)
   } 
+
+ 
   
   return (
     <div className="wrapper__right">
@@ -127,10 +131,15 @@ export  function ResultAnalize() {
                       </div> : ''}
                     
 
+             
                   </div>
                 
                 </div>
         </div>
+
+
+
+
     
       </div>
     </div>

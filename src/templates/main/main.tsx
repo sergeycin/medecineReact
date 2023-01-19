@@ -11,15 +11,15 @@ function Main() {
 
   useEffect (()=>{ 
 
-    axios.post('http://dev.rulis.club:4028/api/login2.json', {
-      ffolderno: '0000333189',
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    // axios.post('http://dev.rulis.club:4028/api/login2.json', {
+    //   ffolderno: '0000333189',
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
     // fetch('http://dev.rulis.club:4028/api/login2.json', {
     //     method: 'POST',
     //     mode: 'cors',
@@ -30,7 +30,7 @@ function Main() {
     //     body: JSON.stringify({'folderno':'0000333189','password':'25672','api-key': 'ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48'})
     // })  .then(data =>{
       
-    //   console.log(data)
+    //   return data.json()
     
     //   })
     //   .then( data => {

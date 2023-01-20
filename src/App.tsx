@@ -9,7 +9,7 @@ import LeftSidaBar from './templates/leftSidebar/leftSideBar';
 
 function App() {
   const {token,login,logout,userId} = useAuth()
- const isAuthenticated:any = true //!!token
+ const isAuthenticated:any = false //!!token
 
   return (
    <>

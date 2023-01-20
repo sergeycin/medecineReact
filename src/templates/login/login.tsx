@@ -41,9 +41,8 @@ function Login() {
     // }
 
     try{
-      let formData = new FormData();
-      formData.append("api-key", "ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48");
-      const data = await request('http://dev.rulis.club:4028/api/login2.json','POST',formData)
+
+      const data = await request('http://dev.rulis.club:4028/api/lis/login2.json?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&folderno=0000333189&password=25672','GET')
       console.log(data)
       // auth.login(data.token,data.userId)
       // message(data.message)

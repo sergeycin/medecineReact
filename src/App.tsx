@@ -9,12 +9,14 @@ import LeftSidaBar from './templates/leftSidebar/leftSideBar';
 
 function App() {
   const {token,login,logout,userId} = useAuth()
- const isAuthenticated:any = false //!!token
+ const isAuthenticated:any = !!token //
+ const url = 'http://dev.rulis.club:4028'
+ const api_key = 'ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48'
 
   return (
    <>
       <AuthContext.Provider value={{
-      token,login,logout,userId, isAuthenticated
+      token,login,url,api_key,logout,userId, isAuthenticated
     }}>
 
 {isAuthenticated && <Navbar/>}

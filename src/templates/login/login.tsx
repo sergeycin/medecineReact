@@ -31,23 +31,14 @@ function Login() {
 
   const loginHandler = async (event:any) =>{
     event.preventDefault()
-
-    // if(form.login == '0000333189' && form.password == '25672'){
-    //     navigate("/patient/main")
-    //     message('Вы успешно авторизировались')
-    // }
-    // else{
-    //     message('Неверный логин или пароль')
-    // }
-
     try{
 
-      const data = await request('http://dev.rulis.club:4028/api/lis/login2.json?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&folderno=0000333189&password=25672','GET')
+      const data = await request(`http://dev.rulis.club:4028/api/lis/login2.json?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&folderno=${form.folderno}&password=${form.password}`,'GET')
       console.log(data)
-      // auth.login(data.token,data.userId)
-      // message(data.message)
+      auth.login(data.data.pid,data.data.pid)
+      message(data.message)
   
-      // navigate("/admin/main")
+      navigate("/patient/main")
       
     }catch (e){console.log(e)}
   }
@@ -90,20 +81,10 @@ function Login() {
           <label htmlFor="password">Пароль</label>
 
         </div>
-        {/* <div className="input-field col s12">
-    
-          <label htmlFor="password">Медицинский центр</label>
-          <ul id="dropdown2" className="dropdown-content">
-    <li><a href="#!">one<span className="badge">1</span></a></li>
-    <li><a href="#!">two<span className="new badge">1</span></a></li>
-    <li><a href="#!">three</a></li>
-  </ul>
-  <a className="btn dropdown-trigger" href="#!" data-target="dropdown2">Dropdown<i className="material-icons right"></i></a>
-         
-        </div> */}
+ 
       </div>
       <button onClick={loginHandler} className="login-btn" disabled={loading}  style={{marginRight:10}}>Login</button>
-   {/* <button type='submit' className='login-btn'>Login</button> */}
+
     </form> 
   
         </div>

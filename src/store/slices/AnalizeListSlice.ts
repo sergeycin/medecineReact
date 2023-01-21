@@ -4,35 +4,24 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 interface PagesState{
     loading: boolean,
     error: string,
-   fields: {
-    titles: any[],
-    dataFields: any[]
-   },
+   analizes: any
    message: string
 }
 
 const initialState: PagesState = {
     loading: false,
     error: '',
-    fields: {
-        titles: [],
-    dataFields: []
-    },
+    analizes: [],
     message: ''
 
 }
 
-interface Payload{
 
-        titles: any[],
-        dataFields: any[]
-
-}
 
 
 
 export const FieldSLice = createSlice({
-    name: 'fields',
+    name: 'analizes',
     initialState,
     reducers: {
         
@@ -40,17 +29,11 @@ export const FieldSLice = createSlice({
         fetching(state){
            state.loading = true 
         },
-        fetchSuccess(state,action: PayloadAction<Payload>){
+        fetchSuccess(state,action: PayloadAction<any>){
             state.loading = false
-            state.fields = action.payload
+            state.analizes = action.payload
         },
-        fetchSuccessJust(state){
-            state.loading = false 
-        },
-        fetchSuccessCreateField(state,action: PayloadAction<string>){
-            state.loading = false 
-            state.message = action.payload
-        },
+     
         fetchError(state,action:PayloadAction<Error>){
             state.loading = false
             state.error = action.payload.message

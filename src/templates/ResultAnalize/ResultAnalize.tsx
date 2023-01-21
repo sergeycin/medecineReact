@@ -2,18 +2,47 @@
 import './ResultAnalize.scss'
 import analize from '../../assets/img/analize.svg'
 import { BreadCrumb } from '../breadcrumb/breadcrumb';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
+import { makeRequest } from '../../hooks/fetch.hooks';
+import { AuthContext } from '../../context/AuthContext';
+import { useAppDispatch, UseAppSelector } from '../../hooks/redux';
+import { fetchResultAnalizes } from '../../store/actions/analizeAction';
+interface LocationState {
+  state:{
+      orderno: string,
+  }
+ 
 
-
+}
 
 export  function ResultAnalize() {
+  const auth = useContext(AuthContext)
+  const location = useLocation();
+  const { state } = location as LocationState;
   const [isOpen,setIsOpen] = useState<number>(0)
 
   const openList = (event: React.MouseEvent, num:number) =>{
  isOpen === num ? setIsOpen(0) : setIsOpen(num)
   } 
 
- 
+  const dispatch = useAppDispatch()
+  const {error,loading,resultAnalizes} = UseAppSelector(state => state.ResultSLice)
+
+  
+  
+  // useEffect(() => {
+  //       dispatch(fetchResultAnalizes(auth,state.orderno))    
+        
+  //       const data = makeRequest(`https://212.19.6.217/nreports/report.php?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&orderno=${state.orderno}&ecp=1`,'GET')
+
+  //       data.then(()=>console.log(data))
+  // },[])
+
+//   $params = array ( "params" => array("api-key" => "ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48", 
+//   "folderno" => $folderno, "ecp" => "1"), 
+//   "domain" => "https://212.19.6.217/nreports/report.php");
+//  console.log(state.orderno)
   
   return (
     <div className="wrapper__right">
@@ -36,105 +65,43 @@ export  function ResultAnalize() {
       </div>
 
         <div className="leftSideBar__list">
-               <div className="leftSideBar__list-item">
-                      <h5 onClick={(e) => openList(e,1)}>- 343 - Общий анализ крови от 0 до 7лет</h5>
-                      {isOpen == 1 ?    <div className="leftSideBar__list-open">
-                          <ul>
 
-                           
-                               <li>
-                               <div className="table__names table-list">
-        <div className="table__names-item explore"><p>Гемоглобин</p></div>
-        <div className="table__names-item"><p>110</p></div>
-        <div className="table__names-item"><p>г/л</p></div>
-        <div className="table__names-item"><p>110-140</p></div>
-      </div>
-                                </li>
-                                <li>
-                               <div className="table__names table-list">
-        <div className="table__names-item explore"><p>Исследование</p></div>
-        <div className="table__names-item"><p>Результат</p></div>
-        <div className="table__names-item"><p>Ед.изм.</p></div>
-        <div className="table__names-item"><p>Референсные значения</p></div>
-      </div>
-                                </li>
+          {resultAnalizes ? resultAnalizes.map(result => 
+            <div className="leftSideBar__list-item">
+            <h5 onClick={(e) => openList(e,Number(result.code))}>{result.panel}</h5>
+            {isOpen == Number(result.code) ?    <div className="leftSideBar__list-open">
+                <ul>
 
-                                <li>
-                               <div className="table__names table-list redcolor">
-        <div className="table__names-item explore"><p>Исследование</p></div>
-        <div className="table__names-item"><p>Результат</p></div>
-        <div className="table__names-item"><p>Ед.изм.</p></div>
-        <div className="table__names-item"><p>Референсные значения</p></div>
-      </div>
-                                </li>
-                                <li>
-                               <div className="table__names table-list redcolor">
-        <div className="table__names-item explore"><p>Исследование</p></div>
-        <div className="table__names-item"><p>Результат</p></div>
-        <div className="table__names-item"><p>Ед.изм.</p></div>
-        <div className="table__names-item"><p>Референсные значения</p></div>
-      </div>
-                                </li>
-
-                           
-                          </ul>
-                      </div> : ''}
+                 {result.tests.map((test:any) =>
+                        test.results[0].analytes.map((item:any) => 
+                        <div key={item.key} className="table__names table-list">
+                        <div className="table__names-item explore"><p>{item.analyte}</p></div>
+                        <div className="table__names-item"><p>{item.result}</p></div>
+                        <div className="table__names-item"><p>{item.unit}</p></div>
+                        <div className="table__names-item"><p>{item.limits}</p></div>
+                        </div>        
+                        )
+                
+                  
+                  )}
+                     <li>
+                   
+                      </li>
                     
 
-                  </div>
+                 
+                </ul>
+            </div> : ''}
+          
+
+        </div>
+          
+          ): ''}
+             
                 
                 </div>
-
-                <div className="leftSideBar__list">
-               <div className="leftSideBar__list-item">
-                      <h5 onClick={(e) => openList(e,2)}>+ 264 - Общий Ig E</h5>
-                      {isOpen == 2 ?    <div className="leftSideBar__list-open">
-                          <ul>
-
-                           
-                               <li>
-                               <div className="table__names table-list">
-        <div className="table__names-item explore"><p>Гемоглобин</p></div>
-        <div className="table__names-item"><p>110</p></div>
-        <div className="table__names-item"><p>г/л</p></div>
-        <div className="table__names-item"><p>110-140</p></div>
-      </div>
-                                </li>
-                                <li>
-                               <div className="table__names table-list">
-        <div className="table__names-item explore"><p>Исследование</p></div>
-        <div className="table__names-item"><p>Результат</p></div>
-        <div className="table__names-item"><p>Ед.изм.</p></div>
-        <div className="table__names-item"><p>Референсные значения</p></div>
-      </div>
-                                </li>
-
-                                <li>
-                               <div className="table__names table-list">
-        <div className="table__names-item explore"><p>Исследование</p></div>
-        <div className="table__names-item"><p>Результат</p></div>
-        <div className="table__names-item"><p>Ед.изм.</p></div>
-        <div className="table__names-item"><p>Референсные значения</p></div>
-      </div>
-                                </li>
-                                <li>
-                               <div className="table__names table-list">
-        <div className="table__names-item explore"><p>Исследование</p></div>
-        <div className="table__names-item"><p>Результат</p></div>
-        <div className="table__names-item"><p>Ед.изм.</p></div>
-        <div className="table__names-item"><p>Референсные значения</p></div>
-      </div>
-                                </li>
-
-                           
-                          </ul>
-                      </div> : ''}
-                    
 
              
-                  </div>
-                
-                </div>
         </div>
 
 

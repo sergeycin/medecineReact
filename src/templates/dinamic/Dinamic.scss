@@ -2,3 +2,9 @@
     margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
+.calendars{
+    display: flex;
+    &__blok{
+        margin-right: 1rem;
+    }
+}

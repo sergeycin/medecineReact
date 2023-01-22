@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BreadCrumb } from "../breadcrumb/breadcrumb";
 import './Dinamic.scss'
 import analize from '../../assets/img/analize.svg'
@@ -7,17 +7,27 @@ import 'react-calendar/dist/Calendar.css';
 import Select from 'react-select';
 import { UserData } from '../charts/chart';
 import BarChart from '../charts/BarChart';
+import { makeRequest } from "../../hooks/fetch.hooks";
+import { AuthContext } from "../../context/AuthContext";
+import { useAppDispatch, UseAppSelector } from "../../hooks/redux";
+import { fetchIndicators } from "../../store/actions/DinamicIndicatorsAction";
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
 
 function Dinamic(){
     const [myvalue, onChange] = useState(new Date());
-
+    const [endvalue, onChangeEnd] = useState(new Date());
     const [selectedOption, setSelectedOption] = useState(null);
+    const auth = useContext(AuthContext)
+    const dispatch = useAppDispatch()
+    const {error,loading,indicators} = UseAppSelector(state => state.IndicatorsSLice)
+  
+    const [options,setOptions]= useState(indicators)
+    
+    
+    useEffect(() => {
+          dispatch(fetchIndicators(auth))      
+    },[])
+  
 
     const [userData,setUserData] = useState({
       labels: UserData.map((item) => item.year ) ,
@@ -27,6 +37,14 @@ function Dinamic(){
   
       }]
     })
+
+    // useEffect(()=>{
+    //   const data = makeRequest(`${auth.url}/api/lis/analytes.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}`,'GET')
+
+    //   data.then((data)=>{
+    //     console.log(data)
+    //   })
+    // },[])
 
     return(
      <div className="wrapper__right">
@@ -46,8 +64,18 @@ function Dinamic(){
         onChange={() => setSelectedOption}
         options={options}
       />
-         <p>за период:</p>
-         <Calendar onChange={onChange} value={myvalue} />
+        <div className="name"></div>
+        <div className="calendars">
+          <div className="calendars__blok">
+            <p>c {myvalue.getDate()}-{myvalue.getMonth() + 1}-{myvalue.getFullYear()}</p>
+          <Calendar onChange={onChange} value={myvalue} />
+          </div>
+          <div className="calendars__blok">
+            <p>по {endvalue.getDate()}-{endvalue.getMonth() + 1}-{endvalue.getFullYear()}</p>
+         <Calendar onChange={onChangeEnd} value={endvalue} />
+         </div>
+        </div>
+    
         </div>
         <div className="card-action">
         <a className="waves-effect waves-light btn">button</a>

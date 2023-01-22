@@ -18,8 +18,6 @@ function Main() {
   const auth = useContext(AuthContext)
   const dispatch = useAppDispatch()
   const {error,loading,analizes} = UseAppSelector(state => state.FieldSLice)
-
-  
   
   useEffect(() => {
         dispatch(fetchAnalizeList(auth))      

@@ -31,13 +31,13 @@ export  function ResultAnalize() {
 
   
   
-  // useEffect(() => {
-  //       dispatch(fetchResultAnalizes(auth,state.orderno))    
+  useEffect(() => {
+        dispatch(fetchResultAnalizes(auth,state.orderno))    
         
-  //       const data = makeRequest(`https://212.19.6.217/nreports/report.php?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&orderno=${state.orderno}&ecp=1`,'GET')
+        // const data = makeRequest(`https://212.19.6.217/nreports/report.php?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&orderno=${state.orderno}&ecp=1`,'GET')
 
-  //       data.then(()=>console.log(data))
-  // },[])
+        // data.then(()=>console.log(data))
+  },[])
 
 //   $params = array ( "params" => array("api-key" => "ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48", 
 //   "folderno" => $folderno, "ecp" => "1"), 
@@ -74,7 +74,7 @@ export  function ResultAnalize() {
 
                  {result.tests.map((test:any) =>
                         test.results[0].analytes.map((item:any) => 
-                        <div key={item.key} className="table__names table-list">
+                        <div key={item.key}  className={`table__names table-list ${item.status == 'O' ? 'redcolor' : ''}`}>
                         <div className="table__names-item explore"><p>{item.analyte}</p></div>
                         <div className="table__names-item"><p>{item.result}</p></div>
                         <div className="table__names-item"><p>{item.unit}</p></div>

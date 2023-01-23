@@ -32,7 +32,7 @@ export const fetchResultAnalizes = (auth:any,orderno:string) => {
         try{
             dispatch(fetching())
             const data = await makeRequest(`${auth.url}/api/lis/results.json?api-key=${auth.api_key}&orderno=${orderno}&uid=${auth.userId}`,'GET')
-            
+            console.log(data)
             dispatch(fetchSuccess(data.data.panels))
         }
         catch (e){

@@ -4,13 +4,16 @@ import './Dinamic.scss'
 import analize from '../../assets/img/analize.svg'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import Select from 'react-select';
+// import AsyncSelect from 'react-select/async';
 import { UserData } from '../charts/chart';
 import BarChart from '../charts/BarChart';
 import { makeRequest } from "../../hooks/fetch.hooks";
 import { AuthContext } from "../../context/AuthContext";
 import { useAppDispatch, UseAppSelector } from "../../hooks/redux";
 import { fetchIndicators } from "../../store/actions/DinamicIndicatorsAction";
+import { getSelectData } from "./addSelectData";
+import Select from 'react-select';
+
 
 
 function Dinamic(){
@@ -21,14 +24,16 @@ function Dinamic(){
     const dispatch = useAppDispatch()
     const {error,loading,indicators} = UseAppSelector(state => state.IndicatorsSLice)
   
-    const [options,setOptions]= useState(indicators)
+    const [point, setPoint]= useState<any>('')
     
     
-    useEffect(() => {
-          dispatch(fetchIndicators(auth))      
+    
+useEffect(() => {
+      dispatch(fetchIndicators(auth))
+      
+      
     },[])
   
-
     const [userData,setUserData] = useState({
       labels: UserData.map((item) => item.year ) ,
       datasets:[{
@@ -38,16 +43,30 @@ function Dinamic(){
       }]
     })
 
-    // useEffect(()=>{
-    //   const data = makeRequest(`${auth.url}/api/lis/analytes.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}`,'GET')
+    const AcceptHandler = async (event:any) =>{
+      event.preventDefault()
+      
+      const data =   makeRequest(`${auth.url}/api/lis/analytes.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}&analyte=3&dstart=8-08-2021&dend=20-01-2023`,'GET')
+      data.then((data:any) =>console.log(data))
+    //   $curl_params = array('domain'=> $_SESSION["REST_SERVICE"].'/api/lis/plot.json',
+    //   'cookies'=> 'cookies.txt',
+    //   'params'=> array(
+    //     'pid'=> $_SESSION["PID"],
+    //     'uid'=> $_SESSION["UID"],
+    //     'analyte'=> $params["FORM"]["analyte_id"],
+    //     'dstart'=> $params["FORM"]["daterange"]["start"],
+    //     'dend'=> $params["FORM"]["daterange"]["end"],
+    //     'api-key'=> 'ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48'
+    //   )
+    // );
+  
 
-    //   data.then((data)=>{
-    //     console.log(data)
-    //   })
-    // },[])
+    }
+ 
 
     return(
      <div className="wrapper__right">
+
   <BreadCrumb array={['Главная','Динамика показателей']}></BreadCrumb>
   <div className="analize dinamic">
   <div className="col s12 m7">
@@ -59,11 +78,13 @@ function Dinamic(){
       <div className="card-stacked">
         <div className="card-content ">
          <p>Показатель:</p>
-         <Select
+         {/* <AsyncSelect cacheOptions loadOptions={fetchData} defaultOptions /> */}
+     { indicators ?   <Select
         defaultValue={selectedOption}
-        onChange={() => setSelectedOption}
-        options={options}
-      />
+        onChange={setSelectedOption}
+        options={indicators}
+      /> : ''
+     }
         <div className="name"></div>
         <div className="calendars">
           <div className="calendars__blok">
@@ -78,7 +99,7 @@ function Dinamic(){
     
         </div>
         <div className="card-action">
-        <a className="waves-effect waves-light btn">button</a>
+        <a onClick={AcceptHandler} className="waves-effect waves-light btn">button</a>
         </div>
       </div>
 

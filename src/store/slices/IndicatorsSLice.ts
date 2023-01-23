@@ -15,7 +15,7 @@ interface AnalytesInterface{
 interface PagesState{
     loading: boolean,
     error: string,
-    indicators: ArrayObject[],
+    indicators: any,
     message: string
 }
 
@@ -40,10 +40,10 @@ export const IndicatorsSLice = createSlice({
         fetching(state){
            state.loading = true 
         },
-        fetchSuccess(state,action: PayloadAction<ArrayObject[]>){
+        fetchSuccess(state,action: PayloadAction<any[]>){
             state.loading = false
             state.indicators = action.payload
-            console.log(state.indicators)
+            // console.log(state.indicators)
         },
      
         fetchError(state,action:PayloadAction<Error>){

@@ -68,7 +68,7 @@ export  function ResultAnalize() {
 
           {resultAnalizes ? resultAnalizes.map(result => 
             <div className="leftSideBar__list-item">
-            <h5 onClick={(e) => openList(e,Number(result.code))}>{result.panel}</h5>
+            <h5 className={isOpen ? 'arrowOpen' : ''} onClick={(e) => openList(e,Number(result.code))}>{result.panel}</h5>
             {isOpen == Number(result.code) ?    <div className="leftSideBar__list-open">
                 <ul>
 

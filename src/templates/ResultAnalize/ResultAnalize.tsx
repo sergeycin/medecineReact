@@ -39,7 +39,7 @@ export  function ResultAnalize() {
 
   return (
     <div className="wrapper__right">
-       <BreadCrumb array={['Главная','Список анализов','Результаты анализов']}></BreadCrumb>
+       <BreadCrumb array={[{label:'Главная',route:'/patient'},{label:'Список анализов',route:'/patient/main'},{label:'Результаты анализов',route:'/patient/:id'}]} ></BreadCrumb>
        <div className="result">
      <h2 className="header header-list">Результаты анализов</h2>
     <div className="card horizontal">

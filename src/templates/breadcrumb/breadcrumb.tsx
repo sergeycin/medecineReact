@@ -1,8 +1,14 @@
 
+import { NavLink } from 'react-router-dom';
 import './breadcrumb.scss'
  
 interface listArray{
-  array?: any[]
+  array?: listArrayObject[]
+}
+
+interface listArrayObject{
+  label:string,
+  route:string
 }
 
 export  function BreadCrumb({array}:listArray) {
@@ -14,7 +20,7 @@ export  function BreadCrumb({array}:listArray) {
   <nav>
     <div className="nav-wrapper  nav-bread">
       <div className="col s12">
-       {array?.map((item) => <a href="#!" className="breadcrumb">{item}</a>)}
+       {array?.map((item) => <NavLink to={item.route} className="breadcrumb">{item.label}</NavLink>)}
        
         {/* <a href="#!" className="breadcrumb">Список анализов</a> */}
       

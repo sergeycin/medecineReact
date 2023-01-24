@@ -105,3 +105,71 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
         display: none;
     }
 }
+
+
+
+
+ /*Checkbox */
+ input[type="checkbox"]{
+    margin-left: 0;
+   -webkit-appearance: none !important;
+   -moz-appearance:    none !important;
+   appearance:         none !important;
+   width: 18px !important; 
+   height: 18px !important;
+   border: 1px solid 
+   black;
+   position: relative;
+   background: white;
+border-radius: 0px;
+   transform: translateY(30%);
+
+}
+input[type='checkbox']::before {
+   content: '';
+   color: black;
+   background: $purple;
+   -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+   position: absolute;
+   top: 4px;
+   right: 4px;
+   bottom: 4px;
+   left: 4px;
+   background-color: transparent;
+   background-size: contain;
+   background-position: center center;
+   background-repeat: no-repeat;
+   border-radius: 2px;
+   -webkit-transform: scale(0);
+           transform: scale(0);
+   -webkit-transition: -webkit-transform 0.25s ease-in-out;
+   transition: -webkit-transform 0.25s ease-in-out;
+   transition: transform 0.25s ease-in-out;
+   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+   /* base64 encoded to make things easier to show 
+       normally you would use an image or a font
+   */
+   background-image: url("../../assets/img/checkinput.svg");
+ }
+ input[type='checkbox']:checked {
+  border: none;
+background: $purple !important; 
+-webkit-appearance: none;
+-moz-appearance: none;
+     appearance: none;
+} 
+ input[type='checkbox']:checked::before {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+   -webkit-transform: scale(1);
+           transform: scale(1);
+ }
+ .tea .check__button{
+     width: 100%;
+ }
+ .teaSankYou .check__button{
+    width: 90%;
+}

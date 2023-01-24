@@ -28,7 +28,7 @@ function Main() {
     <div className="wrapper__right">
   <div className="main">
   {loading && <Loader/>}
-    <BreadCrumb array={['Главная','Список анализов']} />
+    <BreadCrumb array={[{label:'Главная',route:'/patient/main'},{label:'Список анализов',route:'/patient/main'}]} />
     <div className="analize">
     <div className="col s12 m7">
     <h2 className="header header-list">Список анализов</h2>

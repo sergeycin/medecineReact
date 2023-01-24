@@ -13,13 +13,14 @@ import { useAppDispatch, UseAppSelector } from "../../hooks/redux";
 import { fetchIndicators } from "../../store/actions/DinamicIndicatorsAction";
 import { getSelectData } from "./addSelectData";
 import Select from 'react-select';
+import LineChart from "../charts/LineChart";
 
 
 
 function Dinamic(){
     const [myvalue, onChange] = useState(new Date());
     const [endvalue, onChangeEnd] = useState(new Date());
-    const [selectedOption, setSelectedOption] = useState<any>(null);
+    const [selectedOption, setSelectedOption] = useState<any>('Выберите анализ');
     const auth = useContext(AuthContext)
     const dispatch = useAppDispatch()
     const {error,loading,indicators} = UseAppSelector(state => state.IndicatorsSLice)
@@ -28,20 +29,11 @@ function Dinamic(){
     
     
     
-useEffect(() => {
+    useEffect(() => {
       dispatch(fetchIndicators(auth))
-      
-      
     },[])
   
-    const [userData,setUserData] = useState({
-      labels: UserData.map((item) => item.year ) ,
-      datasets:[{
-        label: 'Users Game',
-        data: UserData.map((item) => item.id ) 
-  
-      }]
-    })
+    const [userData,setUserData] = useState<any>()
 
     
 
@@ -50,20 +42,38 @@ useEffect(() => {
       console.log(selectedOption,'selected')
       let startDate = `${myvalue.getDate()}.${myvalue.getMonth() + 1}.${myvalue.getFullYear()}`
       let endDate = `${endvalue.getDate()}.${endvalue.getMonth() + 1}.${endvalue.getFullYear()}`
-      const data =   makeRequest(`${auth.url}/api/lis/plot.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}&analyte=${selectedOption.id}&dstart=${startDate}&dend=${endDate}`,'GET')
-      data.then((data:any) =>console.log(data))
-  
-
+      if(selectedOption != null){
+        const data = makeRequest(`${auth.url}/api/lis/plot.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}&analyte=${selectedOption.id}&dstart=${startDate}&dend=${endDate}`,'GET')
+        data.then((data:any) =>{
+          console.log(data,data.data.results.length)
+          if(data.data.results.length > 0){
+            setUserData({
+              labels: data.data.results.map((item:any) => item.logdate ) ,
+              datasets:[{
+                label: `График изменения показателя «${data.data.test}»`,
+                data: data.data.results.map((item:any) => item.result ) 
+          
+              }]
+            })   
+          }
+          else{
+            setUserData(0)
+          }
+        
+        })
+      }
+    
+     
     }
  
 
     return(
      <div className="wrapper__right">
 
-  <BreadCrumb array={['Главная','Динамика показателей']}></BreadCrumb>
+  <BreadCrumb array={[{label:'Главная',route:'/patient/main'},{label:'Динамика показателей',route:'/patient/dinamic'}]}></BreadCrumb>
   <div className="analize dinamic">
   <div className="col s12 m7">
-    <h2 className="header header-list">Список анализов</h2>
+    <h2 className="header header-list">Динамика показателей</h2>
     <div className="card horizontal">
       <div className="card-image">
         <img src={analize} />
@@ -71,7 +81,7 @@ useEffect(() => {
       <div className="card-stacked">
         <div className="card-content ">
          <p>Показатель:</p>
-         {/* <AsyncSelect cacheOptions loadOptions={fetchData} defaultOptions /> */}
+     
      { indicators ?   <Select
         defaultValue={selectedOption}
         onChange={setSelectedOption}
@@ -92,14 +102,16 @@ useEffect(() => {
     
         </div>
         <div className="card-action">
-        <a onClick={AcceptHandler} className="waves-effect waves-light btn">button</a>
+        <a onClick={AcceptHandler} className="waves-effect waves-light btn">Сформировать</a>
         </div>
+        {userData == 0 ? <p style={{textAlign:'center'}}>За данный период данные не найдены'</p> : '' }
       </div>
 
-
     </div>
-
-    <BarChart chartData={userData} />
+    {userData ?  <div className="card horizontal card__chart">
+       <LineChart chartData={userData} />  
+      </div>
+: ''}
 </div>
   </div>
 

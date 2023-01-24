@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useHttp } from '../../hooks/http.hook';
 import { AuthContext } from '../../context/AuthContext';
 import { useMessage } from '../../hooks/message.hook';
+import Select from 'react-select';
 
 
 function Login() {
@@ -15,19 +16,25 @@ function Login() {
   const message = useMessage()
   const {loading,error,request, clearError} = useHttp() 
 
-    const [form,setForm] = useState({
-        folderno: '', password:''
-    })
+  const [selectedOption, setSelectedOption] = useState<any>(null);
 
-    useEffect(()=>{
+  // const [dataClinicks,setClinicks] = useState([{label:'Медицинский центр Ланта',value:'Медицинский центр Ланта'}])
+
+  const [form,setForm] = useState({
+        folderno: '', password:''
+  })
+
+  const dataClinicks = [{label:'Медицинский центр Ланта',value:'Медицинский центр Ланта'}]
+
+  useEffect(()=>{
       message(error)
       clearError()
-    }, [error,message,clearError])
+  }, [error,message,clearError])
 
 
-    const changeHandler = (event:any) =>{
+  const changeHandler = (event:any) =>{
         setForm({ ...form, [event.target.name]: event.target.value})
-    }
+  }
 
   const loginHandler = async (event:any) =>{
     event.preventDefault()
@@ -81,7 +88,23 @@ function Login() {
           <label htmlFor="password">Пароль</label>
 
         </div>
- 
+        <div className="input-field col s12">
+        {dataClinicks ?<Select<any>
+        defaultValue = {dataClinicks[0]}
+        onChange={setSelectedOption}
+        options={dataClinicks} /> : ''}
+        </div>
+        <div className="check-block">
+        <div className="input-field col s12">
+      <div className="checkbox">
+            <input id="check" type="checkbox"/>
+      </div>
+
+      <label htmlFor="#check">Я даю своё  согласие на обработку моих персональных данных обработку персональных данных </label>
+
+
+          </div>
+        </div>
       </div>
       <button onClick={loginHandler} className="login-btn" disabled={loading}  style={{marginRight:10}}>Login</button>
 

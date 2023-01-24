@@ -52,17 +52,6 @@ useEffect(() => {
       let endDate = `${endvalue.getDate()}.${endvalue.getMonth() + 1}.${endvalue.getFullYear()}`
       const data =   makeRequest(`${auth.url}/api/lis/plot.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}&analyte=${selectedOption.id}&dstart=${startDate}&dend=${endDate}`,'GET')
       data.then((data:any) =>console.log(data))
-    //   $curl_params = array('domain'=> $_SESSION["REST_SERVICE"].'/api/lis/plot.json',
-    //   'cookies'=> 'cookies.txt',
-    //   'params'=> array(
-    //     'pid'=> $_SESSION["PID"],
-    //     'uid'=> $_SESSION["UID"],
-    //     'analyte'=> $params["FORM"]["analyte_id"],
-    //     'dstart'=> $params["FORM"]["daterange"]["start"],
-    //     'dend'=> $params["FORM"]["daterange"]["end"],
-    //     'api-key'=> 'ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48'
-    //   )
-    // );
   
 
     }

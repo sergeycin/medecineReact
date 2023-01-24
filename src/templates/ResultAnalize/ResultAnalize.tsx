@@ -33,17 +33,10 @@ export  function ResultAnalize() {
   
   useEffect(() => {
         dispatch(fetchResultAnalizes(auth,state.orderno))    
-        
-        // const data = makeRequest(`https://212.19.6.217/nreports/report.php?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&orderno=${state.orderno}&ecp=1`,'GET')
 
-        // data.then(()=>console.log(data))
   },[])
 
-//   $params = array ( "params" => array("api-key" => "ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48", 
-//   "folderno" => $folderno, "ecp" => "1"), 
-//   "domain" => "https://212.19.6.217/nreports/report.php");
-//  console.log(state.orderno)
-  
+
   return (
     <div className="wrapper__right">
        <BreadCrumb array={['Главная','Список анализов','Результаты анализов']}></BreadCrumb>

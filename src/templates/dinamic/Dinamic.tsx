@@ -19,7 +19,7 @@ import Select from 'react-select';
 function Dinamic(){
     const [myvalue, onChange] = useState(new Date());
     const [endvalue, onChangeEnd] = useState(new Date());
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState<any>(null);
     const auth = useContext(AuthContext)
     const dispatch = useAppDispatch()
     const {error,loading,indicators} = UseAppSelector(state => state.IndicatorsSLice)
@@ -43,10 +43,14 @@ useEffect(() => {
       }]
     })
 
+    
+
     const AcceptHandler = async (event:any) =>{
       event.preventDefault()
-      
-      const data =   makeRequest(`${auth.url}/api/lis/analytes.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}&analyte=3&dstart=8-08-2021&dend=20-01-2023`,'GET')
+      console.log(selectedOption,'selected')
+      let startDate = `${myvalue.getDate()}.${myvalue.getMonth() + 1}.${myvalue.getFullYear()}`
+      let endDate = `${endvalue.getDate()}.${endvalue.getMonth() + 1}.${endvalue.getFullYear()}`
+      const data =   makeRequest(`${auth.url}/api/lis/plot.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}&analyte=${selectedOption.id}&dstart=${startDate}&dend=${endDate}`,'GET')
       data.then((data:any) =>console.log(data))
     //   $curl_params = array('domain'=> $_SESSION["REST_SERVICE"].'/api/lis/plot.json',
     //   'cookies'=> 'cookies.txt',

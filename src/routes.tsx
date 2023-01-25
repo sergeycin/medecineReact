@@ -15,7 +15,7 @@ export const MyRoutes : React.FC<{Authenticated: string}> = ({Authenticated}) =>
      {/* <Navigate to="/admin/main" /> */}
     <Routes > 
     <Route
-        path="/"
+        path="/patient"
         element={<Navigate to="/patient/main" replace />}
     />
 

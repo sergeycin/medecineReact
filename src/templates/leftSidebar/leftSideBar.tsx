@@ -16,7 +16,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 function LeftSidaBar(){
    const auth = useContext(AuthContext)
-
+   const [isRollUp,setRollUp] = useState(false)
 
 const navigate = useNavigate() 
 
@@ -35,7 +35,8 @@ const navigate = useNavigate()
 
  const logoutHandler = (event:any) =>{
    event.preventDefault()
-     try {
+   if (window.confirm("Вы уверены что хотите выйти")) {
+      try {
          navigate("/patient")
          auth.logout()
      }
@@ -43,19 +44,29 @@ const navigate = useNavigate()
     {
         console.log(e)
     }
+    }
+    
  }
 
+ const rollUp = (event:any) =>{
+
+   event.preventDefault();
+   setRollUp(!isRollUp)
+
+
+ }
 
     return(
         
-        <div className="leftSidaBar">
+        <div className={isRollUp ? `leftSidaBar leftSideBar__small` : 'leftSidaBar'}>
               {/* {loading && <Loader/>} */}
-           <div className="leftSideBar__content">
+           <div className="leftSideBar__content " >
 
            <div className="collection">
-    <NavLink to="/patient/main"   className="collection-item " ><span className="badge">  <i className="material-icons">analytics</i></span>Результаты анализов</NavLink>
-    <NavLink to="/patient/dinamic" className="collection-item "><span className="badge"><i className="material-icons">assessment</i></span>Динамика показателей</NavLink>
-    <a href="/patient/exit" onClick={logoutHandler} className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span>Выход</a>
+    <NavLink to="/patient/main"   className="collection-item " ><span className="badge">  <i className="material-icons">analytics</i></span><span className='TextSideBar'> Результаты анализов</span></NavLink>
+    <NavLink to="/patient/dinamic" className="collection-item "><span className="badge"><i className="material-icons">assessment</i></span><span className='TextSideBar'> Динамика показателей</span></NavLink>
+    <a href="/patient/exit" onClick={logoutHandler} className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span><span className='TextSideBar'> Выход</span></a>
+    <a href="#" onClick={rollUp} className="collection-item rollup"><span className="badge"><i className="material-icons">format_indent_decrease</i></span><span className='TextSideBar'>Свернуть</span></a>
   </div>
 
            </div>

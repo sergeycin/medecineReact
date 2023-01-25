@@ -14,6 +14,7 @@ import { fetchIndicators } from "../../store/actions/DinamicIndicatorsAction";
 import { getSelectData } from "./addSelectData";
 import Select from 'react-select';
 import LineChart from "../charts/LineChart";
+import Loader from "../loader/loader";
 
 
 
@@ -65,16 +66,16 @@ function Dinamic(){
     
      
     }
- 
+    const tdata = [{label:'Выберите Анализ',value: 'Выберите Анализ'}]
 
     return(
      <div className="wrapper__right">
-
+  {loading && <Loader/>}
   <BreadCrumb array={[{label:'Главная',route:'/patient/main'},{label:'Динамика показателей',route:'/patient/dinamic'}]}></BreadCrumb>
   <div className="analize dinamic">
   <div className="col s12 m7">
     <h2 className="header header-list">Динамика показателей</h2>
-    <div className="card horizontal">
+    <div className="card horizontal card-dinamic">
       <div className="card-image">
         <img src={analize} />
       </div>
@@ -83,7 +84,7 @@ function Dinamic(){
          <p>Показатель:</p>
      
      { indicators ?   <Select
-        defaultValue={selectedOption}
+        defaultValue={tdata[0]}
         onChange={setSelectedOption}
         options={indicators}
       /> : ''

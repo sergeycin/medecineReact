@@ -103,3 +103,23 @@
     }
 
 }
+
+@media(max-width:726px){
+    .leftSideBar__list .leftSideBar__list-item h5::after{
+        display: none;
+    }
+}
+
+@media(max-width:515px){
+    .card.horizontal.card-result-analize{
+        overflow-x: scroll;
+    }
+}
+
+
+@media(max-width:450px){
+    .result{
+       margin: 0;
+    }
+    
+}

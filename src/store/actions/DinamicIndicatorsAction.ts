@@ -14,7 +14,6 @@ export const fetchIndicators = (auth:any) => {
         try{
             dispatch(fetching())
             const data = await makeRequest(`${auth.url}/api/lis/analytes.json?api-key=${auth.api_key}&pid=${auth.token}&uid=${auth.userId}`,'GET')
-            console.log(data)
             let newdata:any = []
             data.data.forEach((element:any) => {
                 newdata.push({ value: element.testname, label: element.testname , isDisabled: true },)

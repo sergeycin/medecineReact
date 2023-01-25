@@ -20,7 +20,7 @@ export  function BreadCrumb({array}:listArray) {
   <nav>
     <div className="nav-wrapper  nav-bread">
       <div className="col s12">
-       {array?.map((item) => <NavLink to={item.route} className="breadcrumb">{item.label}</NavLink>)}
+       {array?.map((item) => <NavLink key={item.route} to={item.route} className="breadcrumb">{item.label}</NavLink>)}
        
         {/* <a href="#!" className="breadcrumb">Список анализов</a> */}
       

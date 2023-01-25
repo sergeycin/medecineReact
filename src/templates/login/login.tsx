@@ -15,7 +15,7 @@ function Login() {
   const auth = useContext(AuthContext)
   const message = useMessage()
   const {loading,error,request, clearError} = useHttp() 
-
+  const [isChecked,setChecked] = useState(false)
   const [selectedOption, setSelectedOption] = useState<any>(null);
 
   // const [dataClinicks,setClinicks] = useState([{label:'Медицинский центр Ланта',value:'Медицинский центр Ланта'}])
@@ -41,11 +41,16 @@ function Login() {
     try{
 
       const data = await request(`http://dev.rulis.club:4028/api/lis/login2.json?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&folderno=${form.folderno}&password=${form.password}`,'GET')
-      console.log(data)
-      auth.login(data.data.pid,data.data.pid)
-      message(data.message)
-  
-      navigate("/patient/main")
+      if(isChecked){
+        auth.login(data.data.pid,data.data.pid)
+        message(data.message)
+    
+        navigate("/patient/main")
+      }
+      else{
+        message('Вы не дали согласие на обработку персональных данных')
+      }
+     
       
     }catch (e){console.log(e)}
   }
@@ -95,13 +100,18 @@ function Login() {
         options={dataClinicks} /> : ''}
         </div>
         <div className="check-block">
-        <div className="input-field col s12">
-      <div className="checkbox">
-            <input id="check" type="checkbox"/>
-      </div>
-
-      <label htmlFor="#check">Я даю своё  согласие на обработку моих персональных данных обработку персональных данных </label>
-
+        <div className=" col s12">
+  
+      <p>
+      <label>
+        <input type="checkbox" className="filled-in"  checked={isChecked} onChange={() => setChecked(!isChecked)}/>
+        <span>Я даю своё  согласие на обработку моих персональных данных обработку персональных данных </span>
+      </label>
+    </p>
+    
+{/* 
+      <label htmlFor="#check"></label>
+ */}
 
           </div>
         </div>

@@ -38,7 +38,7 @@
         width: 80%;
         height: 100%;
         display: flex;
-        background: $white;
+        background: transparent;
         justify-content: flex-end;
 
         padding-right: 24px;
@@ -56,3 +56,36 @@
       }
     }
 }
+
+.header__right{
+    display: none;
+    img{
+        width: 32px;
+
+    }
+}
+
+.modal__menu{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 190px;
+    background: white;
+    z-index: 9999;
+    .collection{
+        margin-top: 0;
+    }
+}
+.modal__menu.active{
+    display: block;
+}
+
+
+@media(max-width:768px){
+    .header__right{
+        display: flex;
+    }
+}
+

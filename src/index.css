@@ -14,14 +14,17 @@ code {
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-
+  
 }
 .wrapper{
 display: flex;
 height: 100%;
+position: relative;
 }
   .wrapper__right{
-    width: 80%;
+
+    width: 100%;
+
     margin-top: 0.1rem;
     margin-right: -0.1rem;
   }

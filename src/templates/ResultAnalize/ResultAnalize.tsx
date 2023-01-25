@@ -8,6 +8,7 @@ import { makeRequest } from '../../hooks/fetch.hooks';
 import { AuthContext } from '../../context/AuthContext';
 import { useAppDispatch, UseAppSelector } from '../../hooks/redux';
 import { fetchResultAnalizes } from '../../store/actions/analizeAction';
+import Loader from '../loader/loader';
 interface LocationState {
   state:{
       orderno: string,
@@ -39,10 +40,11 @@ export  function ResultAnalize() {
 
   return (
     <div className="wrapper__right">
+        {loading && <Loader/>}
        <BreadCrumb array={[{label:'Главная',route:'/patient/main'},{label:'Список анализов',route:'/patient/main'},{label:'Результаты анализов',route:'/patient/:id'}]} ></BreadCrumb>
        <div className="result">
      <h2 className="header header-list">Результаты анализов</h2>
-    <div className="card horizontal">
+    <div className="card horizontal card-result-analize">
       <div className="card-image">
         <img src={analize} />
       </div>

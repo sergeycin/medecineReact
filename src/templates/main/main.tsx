@@ -35,15 +35,15 @@ function Main() {
 
   
     {analizes ? analizes.map((item:any) => 
-      <div className="card horizontal">
+      <div key={item.logdate} className="card horizontal">
       <div className="card-image">
         <img src={analize} />
       </div>
       <div className="card-stacked">
         <div className="card-content analize__content">
           <p>Номер заказа: {item.orderno}</p>
-          <p>Дата заказа:{item.logate}</p>
-          <p>Статус: <span className={`label ${item.css}`}>{item.statusname}</span></p>
+          <p>Дата заказа: {item.logdate}</p>
+          <p>Статус:  <span className={`label ${item.css}`}>{item.statusname}</span></p>
         </div>
         <div className="card-action">
         <NavLink to={`/patient/order${item.orderno}`} state={{orderno: item.orderno}} className="waves-effect waves-light btn">Посмотреть</NavLink>

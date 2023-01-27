@@ -5,16 +5,16 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import burger from '../../assets/img/burger.svg'
-import logo from '../../assets/img/logo2.png'
-
+import {clinicsObject} from '../../config'
 function Navbar(){
+
     const auth = useContext(AuthContext)
     const navigate= useNavigate();
     const [isActiveMenu,setActiveMenu] = useState(false)
 
     const logoutHandler = () =>{
         try {
-            navigate("/admin")
+            navigate("/lk")
             auth.logout()
             
        
@@ -31,7 +31,7 @@ function Navbar(){
    <div className="header">
             <div className="header__left">
                 {/* <div className="header__name"><h2><NavLink to="/admin/main">Ланта Центр</NavLink> </h2></div> */}
-                <img className="user-image" src={logo } alt="" />
+                <img className="user-image" src={clinicsObject.logo} alt="" />
                 {/* <div className="header__logo"><img src={lexus} alt="" /></div> */}
             </div>
             <div className="header__right">
@@ -46,9 +46,9 @@ function Navbar(){
     <div className="modal__menu-content " >
 
 <div className="collection">
-<NavLink to="/patient/main"   className="collection-item " ><span className="badge">  <i className="material-icons">analytics</i></span><span className='TextSideBar'> Результаты анализов</span></NavLink>
-<NavLink to="/patient/dinamic" className="collection-item "><span className="badge"><i className="material-icons">assessment</i></span><span className='TextSideBar'> Динамика показателей</span></NavLink>
-<a href="/patient/exit" onClick={logoutHandler} className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span><span className='TextSideBar'> Выход</span></a>
+<NavLink to="/lk/main"   className="collection-item " ><span className="badge">  <i className="material-icons">analytics</i></span><span className='TextSideBar'> Результаты анализов</span></NavLink>
+<NavLink to="/lk/dinamic" className="collection-item "><span className="badge"><i className="material-icons">assessment</i></span><span className='TextSideBar'> Динамика показателей</span></NavLink>
+<a href="/lk/exit" onClick={logoutHandler} className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span><span className='TextSideBar'> Выход</span></a>
 
 </div>
 

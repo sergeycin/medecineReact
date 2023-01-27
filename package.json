@@ -29,6 +29,7 @@
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "/lk",
 
   "scripts": {
     "start": "react-scripts start",

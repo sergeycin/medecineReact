@@ -8,7 +8,8 @@ import { useHttp } from '../../hooks/http.hook';
 import { AuthContext } from '../../context/AuthContext';
 import { useMessage } from '../../hooks/message.hook';
 import Select from 'react-select';
-
+import {clinicsObject} from '../../config'
+import { makeRequest } from '../../hooks/fetch.hooks';
 
 function Login() {
   const navigate= useNavigate();
@@ -24,11 +25,13 @@ function Login() {
         folderno: '', password:''
   })
 
-  const dataClinicks = [{label:'Медицинский центр Ланта',value:'Медицинский центр Ланта'}]
+  const dataClinicks = [{label:`Медицинский центр ${clinicsObject.name}`,value:`Медицинский центр ${clinicsObject.name}`}]
 
   useEffect(()=>{
       message(error)
       clearError()
+
+
   }, [error,message,clearError])
 
 
@@ -38,21 +41,26 @@ function Login() {
 
   const loginHandler = async (event:any) =>{
     event.preventDefault()
-    try{
+   
 
-      const data = await request(`http://dev.rulis.club:4028/api/lis/login2.json?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&folderno=${form.folderno}&password=${form.password}`,'GET')
-      if(isChecked){
-        auth.login(data.data.pid,data.data.pid)
-        message(data.message)
-    
-        navigate("/patient/main")
-      }
-      else{
-        message('Вы не дали согласие на обработку персональных данных')
-      }
-     
+    if(isChecked) {
+      try{
+
+        const data = await request(`${clinicsObject.url}/api/lis/login2.json?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&folderno=${form.folderno}&password=${form.password}`,'GET')
+  
+          message(data.message)
+          auth.login(data.data.pid,data.data.pid)
+       
       
-    }catch (e){console.log(e)}
+          navigate("/lk/main")
+      
+       
+        
+      }catch (e){console.log(e)}
+     }
+    else{
+      message('Вы не дали согласие на обработку персональных данных')
+    }
   }
 
 

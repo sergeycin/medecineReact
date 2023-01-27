@@ -6,11 +6,11 @@ import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { MyRoutes } from './routes';
 import Navbar from './templates/navbar/navbar';
 import LeftSidaBar from './templates/leftSidebar/leftSideBar';
-
+import {clinicsObject} from './config'
 function App() {
   const {token,login,logout,userId} = useAuth()
  const isAuthenticated:any = !!token //
- const url = 'http://dev.rulis.club:4028'
+ const url = clinicsObject.url
  const api_key = 'ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48'
 
   return (

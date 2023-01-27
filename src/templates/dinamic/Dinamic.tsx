@@ -71,7 +71,7 @@ function Dinamic(){
     return(
      <div className="wrapper__right">
   {loading && <Loader/>}
-  <BreadCrumb array={[{label:'Главная',route:'/patient/main'},{label:'Динамика показателей',route:'/patient/dinamic'}]}></BreadCrumb>
+  <BreadCrumb array={[{label:'Главная',route:'/lk/main'},{label:'Динамика показателей',route:'/lk/dinamic'}]}></BreadCrumb>
   <div className="analize dinamic">
   <div className="col s12 m7">
     <h2 className="header header-list">Динамика показателей</h2>

@@ -41,7 +41,7 @@ export  function ResultAnalize() {
   return (
     <div className="wrapper__right">
         {loading && <Loader/>}
-       <BreadCrumb array={[{label:'Главная',route:'/patient/main'},{label:'Список анализов',route:'/patient/main'},{label:'Результаты анализов',route:'/patient/:id'}]} ></BreadCrumb>
+       <BreadCrumb array={[{label:'Главная',route:'/lk/main'},{label:'Список анализов',route:'/lk/main'},{label:'Результаты анализов',route:'/lk/:id'}]} ></BreadCrumb>
        <div className="result">
      <h2 className="header header-list">Результаты анализов</h2>
     <div className="card horizontal card-result-analize">
@@ -50,7 +50,7 @@ export  function ResultAnalize() {
       </div>
       <div className="card-stacked">
         <div className="card-content ">
-        <a target='_blank' href='https://dev.rulis.club/patient/print.php' className="waves-effect waves-light btn"><i className="material-icons right">print</i>Распечатать результат</a>
+        <a target='_blank' href='https://dev.rulis.club/lk/print.php' className="waves-effect waves-light btn"><i className="material-icons right">print</i>Распечатать результат</a>
          
       <div className="table__names">
         <div className="table__names-item explore"><p>Исследование</p></div>

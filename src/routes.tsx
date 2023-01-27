@@ -9,19 +9,19 @@ import { ResultAnalize } from './templates/ResultAnalize/ResultAnalize'
 export const MyRoutes : React.FC<{Authenticated: string}> = ({Authenticated}) => {
 
   if(Authenticated){
-    // console.log('login',Authenticated)
+    console.log('login',Authenticated)
     return(
   <>
      {/* <Navigate to="/admin/main" /> */}
     <Routes > 
     <Route
-        path="/patient"
-        element={<Navigate to="/patient/main" replace />}
+        path="/lk"
+        element={<Navigate to="/lk/main/" replace />}
     />
 
-       <Route path="/patient/main" element={<Main/>}/>  
-       <Route path="/patient/:id" element={<ResultAnalize/>}/> 
-       <Route path="/patient/dinamic" element={<Dinamic/>}/> 
+       <Route path="/lk/main" element={<Main/>}/>  
+       <Route path="/lk/:id" element={<ResultAnalize/>}/> 
+       <Route path="/lk/dinamic" element={<Dinamic/>}/> 
          </Routes>
   </>
     
@@ -33,8 +33,11 @@ export const MyRoutes : React.FC<{Authenticated: string}> = ({Authenticated}) =>
     return(
   <>
     <Routes > 
-       
-       <Route path="/patient" element={<Login/>}/>  
+    {/* <Route
+        path="/"
+        element={<Navigate to={ Authenticated ? '/lk/main' : '/lk/'} replace />}
+    /> */}
+       <Route path="/lk" element={<Login/>}/>  
  
          </Routes>
     

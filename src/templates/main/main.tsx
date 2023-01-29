@@ -28,7 +28,7 @@ function Main() {
     <div className="wrapper__right">
   <div className="main">
   {loading && <Loader/>}
-    <BreadCrumb array={[{label:'Главная',route:'/lk/main'},{label:'Список анализов',route:'/lk/main'}]} />
+    <BreadCrumb array={[{label:'Главная',route:'/p/main'},{label:'Список анализов',route:'/p/main'}]} />
     <div className="analize">
     <div className="col s12 m7">
     <h2 className="header header-list">Список анализов</h2>
@@ -37,7 +37,7 @@ function Main() {
     {analizes ? analizes.map((item:any) => 
       <div key={item.logdate} className="card horizontal">
       <div className="card-image">
-       с
+ 
       </div>
       <div className="card-stacked">
         <div className="card-content analize__content">
@@ -46,7 +46,7 @@ function Main() {
           <p>Статус:  <span className={`label ${item.css}`}>{item.statusname}</span></p>
         </div>
         <div className="card-action">
-        <NavLink to={`/lk/order${item.orderno}`} state={{orderno: item.orderno}} className="waves-effect waves-light btn">Посмотреть</NavLink>
+        <NavLink to={`/p/order${item.orderno}`} state={{orderno: item.orderno}} className="waves-effect waves-light btn">Посмотреть</NavLink>
 
         </div>
       </div>

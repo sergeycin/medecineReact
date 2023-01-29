@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { useAuth } from "../hooks/auth.hook";
 import {clinicsObject} from '../config'
-function noop(jwt?:any, id?:any){}
+function noop(jwt?:any, id?:any,folderno?:string){}
 
 
 export const AuthContext =createContext({

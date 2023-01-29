@@ -1,0 +1,11 @@
+@import '../../index.scss';
+
+.footer{
+    width: 100%;
+    background-color: $purple;
+    color: white;
+    p{
+        text-align: center;
+        margin: 0;
+    }
+}

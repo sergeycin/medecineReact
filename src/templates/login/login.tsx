@@ -47,12 +47,14 @@ function Login() {
       try{
 
         const data = await request(`${clinicsObject.url}/api/lis/login2.json?api-key=ba4deeb3-e2a1-4f8e-8b44-4ffb6455ed48&folderno=${form.folderno}&password=${form.password}`,'GET')
-  
+        console.log(data)
           message(data.message)
           auth.login(data.data.pid,data.data.pid)
-       
+          localStorage.setItem('folderno',JSON.stringify({
+            folderno: data.params.folderno
+          }))
       
-          navigate("/lk/main")
+          navigate("/p/main")
       
        
         

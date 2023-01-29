@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import burger from '../../assets/img/burger.svg'
+import roslis from '../../assets/img/roslis.png'
 import {clinicsObject} from '../../config'
 function Navbar(){
 
@@ -14,7 +15,7 @@ function Navbar(){
 
     const logoutHandler = () =>{
         try {
-            navigate("/lk")
+            navigate("/p")
             auth.logout()
             
        
@@ -35,7 +36,8 @@ function Navbar(){
                 {/* <div className="header__logo"><img src={lexus} alt="" /></div> */}
             </div>
             <div className="header__right">
-                <img onClick={() => setActiveMenu(!isActiveMenu)} src={burger} alt="" />
+                <img className="logo" src={roslis} alt="" />
+                <img className="burger" onClick={() => setActiveMenu(!isActiveMenu)} src={burger} alt="" />
                
                     {/* <p>admin@lexus.com</p>
                     <img onClick={logoutHandler} className="door-image" src={door} alt="" /> */}
@@ -46,9 +48,9 @@ function Navbar(){
     <div className="modal__menu-content " >
 
 <div className="collection">
-<NavLink to="/lk/main"   className="collection-item " ><span className="badge">  <i className="material-icons">analytics</i></span><span className='TextSideBar'> Результаты анализов</span></NavLink>
-<NavLink to="/lk/dinamic" className="collection-item "><span className="badge"><i className="material-icons">assessment</i></span><span className='TextSideBar'> Динамика показателей</span></NavLink>
-<a href="/lk/exit" onClick={logoutHandler} className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span><span className='TextSideBar'> Выход</span></a>
+<NavLink to="/p/main"   className="collection-item " ><span className="badge">  <i className="material-icons">analytics</i></span><span className='TextSideBar'> Результаты анализов</span></NavLink>
+<NavLink to="/p/dinamic" className="collection-item "><span className="badge"><i className="material-icons">assessment</i></span><span className='TextSideBar'> Динамика показателей</span></NavLink>
+<a href="/p/exit" onClick={logoutHandler} className="collection-item"><span className="badge"><i className="material-icons">exit_to_app</i></span><span className='TextSideBar'> Выход</span></a>
 
 </div>
 

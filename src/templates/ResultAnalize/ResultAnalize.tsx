@@ -9,6 +9,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useAppDispatch, UseAppSelector } from '../../hooks/redux';
 import { fetchResultAnalizes } from '../../store/actions/analizeAction';
 import Loader from '../loader/loader';
+
 interface LocationState {
   state:{
       orderno: string,
@@ -34,23 +35,52 @@ export  function ResultAnalize() {
   
   useEffect(() => {
         dispatch(fetchResultAnalizes(auth,state.orderno))    
+  
+    
 
   },[])
+
+ const RequestPdf = async(url:string,method:string,body?:any) => {
+    let headers:any = {}
+  try{
+    await fetch(url, {
+        method,body,headers
+    })
+    .then( res => res.blob() )
+    .then( blob => {
+      var file = window.URL.createObjectURL(blob);
+      window.open(file, '_blank', 'toolbar=0,location=0,menubar=0');
+
+    });
+  }
+  catch(e){
+    return e
+  }
+  }
+
+  const printHandler = (event:any) =>{
+    event?.preventDefault()
+    const storage:any = localStorage.getItem('folderno')
+    const folderno:any = JSON.parse(storage)
+    let formData = new FormData()
+    formData.append('folderno',folderno.folderno)
+    RequestPdf(`https://dev.rulis.club/patient/print.php`,'POST',formData)
+  }
 
 
   return (
     <div className="wrapper__right">
         {loading && <Loader/>}
-       <BreadCrumb array={[{label:'Главная',route:'/lk/main'},{label:'Список анализов',route:'/lk/main'},{label:'Результаты анализов',route:'/lk/:id'}]} ></BreadCrumb>
+       <BreadCrumb array={[{label:'Главная',route:'/p/main'},{label:'Список анализов',route:'/p/main'},{label:'Результаты анализов',route:'/p/:id'}]} ></BreadCrumb>
        <div className="result">
-     <h2 className="header header-list">Результаты анализов</h2>
+     <h2 className="header header-list">Результаты анализов по номеру заказ: {state.orderno}</h2>
     <div className="card horizontal card-result-analize">
       <div className="card-image">
         <img src={analize} />
       </div>
       <div className="card-stacked">
         <div className="card-content ">
-        <a target='_blank' href='https://dev.rulis.club/lk/print.php' className="waves-effect waves-light btn"><i className="material-icons right">print</i>Распечатать результат</a>
+        <a onClick={printHandler} target='_blank' href='https://dev.rulis.club/p/print.php' className="waves-effect waves-light btn"><i className="material-icons right">print</i>Распечатать результат</a>
          
       <div className="table__names">
         <div className="table__names-item explore"><p>Исследование</p></div>

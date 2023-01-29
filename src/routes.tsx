@@ -15,13 +15,13 @@ export const MyRoutes : React.FC<{Authenticated: string}> = ({Authenticated}) =>
      {/* <Navigate to="/admin/main" /> */}
     <Routes > 
     <Route
-        path="/lk"
-        element={<Navigate to="/lk/main/" replace />}
+        path="/p"
+        element={<Navigate to="/p/main/" replace />}
     />
 
-       <Route path="/lk/main" element={<Main/>}/>  
-       <Route path="/lk/:id" element={<ResultAnalize/>}/> 
-       <Route path="/lk/dinamic" element={<Dinamic/>}/> 
+       <Route path="/p/main" element={<Main/>}/>  
+       <Route path="/p/:id" element={<ResultAnalize/>}/> 
+       <Route path="/p/dinamic" element={<Dinamic/>}/> 
          </Routes>
   </>
     
@@ -35,9 +35,9 @@ export const MyRoutes : React.FC<{Authenticated: string}> = ({Authenticated}) =>
     <Routes > 
     {/* <Route
         path="/"
-        element={<Navigate to={ Authenticated ? '/lk/main' : '/lk/'} replace />}
+        element={<Navigate to={ Authenticated ? '/p/main' : '/p/'} replace />}
     /> */}
-       <Route path="/lk" element={<Login/>}/>  
+       <Route path="/p" element={<Login/>}/>  
  
          </Routes>
     

@@ -39,7 +39,7 @@ export const ResultSLice = createSlice({
         fetchSuccess(state,action: PayloadAction<ArrayObject[]>){
             state.loading = false
             state.resultAnalizes = action.payload
-            console.log(state.resultAnalizes)
+            // console.log(state.resultAnalizes)
         },
      
         fetchError(state,action:PayloadAction<Error>){

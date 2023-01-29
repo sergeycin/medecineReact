@@ -7,6 +7,7 @@ import { MyRoutes } from './routes';
 import Navbar from './templates/navbar/navbar';
 import LeftSidaBar from './templates/leftSidebar/leftSideBar';
 import {clinicsObject} from './config'
+import Footer from './templates/footer/footer';
 function App() {
   const {token,login,logout,userId} = useAuth()
  const isAuthenticated:any = !!token //
@@ -27,7 +28,7 @@ function App() {
 
 
 </div>
-
+{isAuthenticated && <Footer/>}
   
   
     </AuthContext.Provider>
